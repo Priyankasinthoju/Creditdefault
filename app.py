@@ -98,7 +98,7 @@ def predict():
             Default_pay = int(prediction[0])
             dbHandler.insertUser(FirstName,LastName,Email,Education,Age,SSN,PhoneNumber,Gender,MaritalStatus,CreditAmount,Rpay_Status_1,Rpay_Status_2,Rpay_Status_3,Rpay_Status_4,Rpay_Status_5,Rpay_Status_6,Statement_1,Statement_2,Statement_3,Statement_4,Statement_5,Statement_6,Payment_1,Payment_2,Payment_3,Payment_4,Payment_5,Payment_6,Default_pay)
     except:
-    return render_template('webpageupdated.html',prediction_texts="Please enter relevant information.")
+        return render_template('webpageupdated.html',prediction_texts="Please enter relevant information.")
         
 
 if __name__ == "__main__":
