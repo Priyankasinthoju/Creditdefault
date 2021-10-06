@@ -338,7 +338,13 @@
 <body>
     <div class="regform">
         <h1>Default Payment Prediction</h1><br><br>
-        <br><br><h3>{{ prediction_text }}<h3>
+        {% if alert_message %}
+            <div class="alert alert-danger">{{ alert_message }}</div>
+           {% endif %}
+
+           {% if success_message %}
+            <div class="alert alert-success">{{ success_message }}</div>
+           {% endif %}
     </div>
     <div></div>
     <div></div>
