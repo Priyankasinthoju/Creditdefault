@@ -99,10 +99,9 @@ def main():
 
             Default_pay = int(prediction[0])
             dbHandler.insertUser(FirstName,LastName,Email,Education,Age,SSN,PhoneNumber,Gender,MaritalStatus,CreditAmount,Rpay_Status_1,Rpay_Status_2,Rpay_Status_3,Rpay_Status_4,Rpay_Status_5,Rpay_Status_6,Statement_1,Statement_2,Statement_3,Statement_4,Statement_5,Statement_6,Payment_1,Payment_2,Payment_3,Payment_4,Payment_5,Payment_6,Default_pay)
-            Customer_info = dbHandler.retrieveUsers()
     except:
         alert_message = "Please enter relevant information."
-    return render_template('webpageupdated.html',Customer_info = Customer_info,alert_message = alert_message, success_message = success_message)
+    return render_template('webpageupdated.html',alert_message = alert_message, success_message = success_message)
         
 
 if __name__ == "__main__":
