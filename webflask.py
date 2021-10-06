@@ -13,16 +13,13 @@ currentdirectory = os.path.dirname(os.path.abspath(__file__))
 app = Flask("__name__")
 model = pickle.load(open('random_forest_classifier_model.pkl', 'rb'))
 
-def predict_default(features):
-
-    features = np.array(features).astype(np.float64).reshape(1,-1)
-    
-    prediction = model.predict(features)
-    return prediction
+@app.route('/',methods=['GET'])
+def Home():
+    return render_template('webpageupdated.html')
 
 standard_to = StandardScaler()
 @app.route("/", methods = ['GET','POST'])
-def home():
+def main():
     alert_message = False
     success_message = False
     try:
