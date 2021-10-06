@@ -16,8 +16,8 @@ model = pickle.load(open('random_forest_classifier_model.pkl', 'rb'))
 def Home():
     return render_template('webpageupdated.html')
 standard_to = StandardScaler()
-@app.route("/predict", methods = ['GET','POST'])
-def predict():
+@app.route("/", methods = ['GET','POST'])
+def main():
     alert_message = False
     success_message = False
     try:
