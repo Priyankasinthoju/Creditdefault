@@ -1,5 +1,6 @@
 from sqlite3.dbapi2 import Cursor, connect
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify, redirect
+from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 import pickle
 import numpy as np
@@ -12,11 +13,13 @@ currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask("__name__")
 model = pickle.load(open('random_forest_classifier_model.pkl', 'rb'))
+app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///Customer_Information.db'
+
 @app.route('/',methods=['GET'])
 def Home():
     return render_template('webpageupdated.html')
 standard_to = StandardScaler()
-@app.route('/', methods = ['GET','POST'])
+@app.route("/", methods = ['GET','POST'])
 def main():
     alert_message = False
     success_message = False
@@ -97,6 +100,12 @@ def main():
             else:
                 success_message = "This account will not be defaulted"
 
+            Default_pay = int(prediction[0])
+            if Default_pay == 1:
+                Status = 'Defaulter'
+            else:
+                Status = 'Non-Defaulter'
+            dbHandler.insertUser(FirstName,LastName,Email,Education,Age,SSN,PhoneNumber,Gender,MaritalStatus,CreditAmount,Rpay_Status_1,Rpay_Status_2,Rpay_Status_3,Rpay_Status_4,Rpay_Status_5,Rpay_Status_6,Statement_1,Statement_2,Statement_3,Statement_4,Statement_5,Statement_6,Payment_1,Payment_2,Payment_3,Payment_4,Payment_5,Payment_6,Default_pay,Status)
     except:
         alert_message = "Please enter relevant information."
     return render_template('webpageupdated.html',alert_message = alert_message, success_message = success_message)
