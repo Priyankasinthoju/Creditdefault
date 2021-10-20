@@ -13,7 +13,7 @@ currentdirectory = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask("__name__")
 model = pickle.load(open('random_forest_classifier_model.pkl', 'rb'))
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///Customer_Information.db'
+app.config['SQLALCHEMY_DATABASE_URL'] = 'DATABASE_URL'
 
 @app.route('/',methods=['GET'])
 def Home():
